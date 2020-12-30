@@ -16,9 +16,12 @@ const DisplayBooks = ({ bookShelf }) => {
           rating_count,
         } = book;
 
+        let httpsImage = image.replace('http', 'https')
+        console.log(httpsImage)
+
         return (
           <div className="cardContainer" key={index}>
-            <Image id='bookCover' src={image} />
+            <Image id='bookCover' src={httpsImage} />
             <BookCards
               title={title}
               author={author}

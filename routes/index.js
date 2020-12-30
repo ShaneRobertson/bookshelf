@@ -41,6 +41,7 @@ apiRouter.get('/google/:queryStr', async (req, res, next) =>{
 
   try {
     const {data} = await axios.get(`${URL}q=${queryStr}&key=${API_KEY}`)
+    console.log('dater', data.items)
     res.send(data.items)
   } catch (error) {
     throw error

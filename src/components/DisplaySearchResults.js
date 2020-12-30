@@ -1,6 +1,6 @@
 import React from "react";
-import { Image, Card, Button } from "react-bootstrap";
-import {createNewBook} from '../api'
+import { Image } from "react-bootstrap";
+
 import SearchBookCards from "./SearchBookCards";
 
 //
@@ -10,10 +10,13 @@ export default function DisplaySearchResults({ searchResults, bookShelf, setBook
     <div className="displayResults">
       {searchResults.map((book) => {
         const { volumeInfo: {title, imageLinks, id, authors, averageRating, ratingsCount, description} } = book;
+
+        let httpsImage = imageLinks.thumbnail.replace('http', 'https')
+        console.log(httpsImage)
         return (
           <div className="cardContainer" key={id}>
-            <Image id='bookCover' src={imageLinks.thumbnail} />
-            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} imageLinks={imageLinks.thumbnail} bookShelf={bookShelf} setBookShelf={setBookShelf} />
+            <Image id='bookCover' src={httpsImage} />
+            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} imageLinks={httpsImage} bookShelf={bookShelf} setBookShelf={setBookShelf} />
             {/* <Card className='bookCards'>
               <Card.Body>
                 <Card.Title>{title} <Button onClick={async () => {
