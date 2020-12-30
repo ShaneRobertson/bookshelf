@@ -1,28 +1,57 @@
-import React, { useState, useEffect } from 'react';
-
-import {
-  getSomething
-} from '../api';
+import React, { useState, useEffect } from "react";
+import DisplayBookshelf from "./DisplayBookshelf";
+import AddBook from "./AddBook";
+import NavBar from "./NavBar";
+import { Switch, Route } from "react-router-dom";
+import SearchBooks from "./SearchBooks";
+import Home from "./Home";
+import DisplaySearchResults from "./DisplaySearchResults";
+import SearchMessage from "./SearchMessage";
+import { getBooks } from "../api";
 
 const App = () => {
-  const [message, setMessage] = useState('');
+  const [bookShelf, setBookShelf] = useState([]);
+  const [searchResults, setSearchResults] = useState();
 
   useEffect(() => {
-    getSomething()
-      .then(response => {
-        setMessage(response.message);
+    getBooks()
+      .then((response) => {
+        setBookShelf(response);
       })
-      .catch(error => {
-        setMessage(error.message);
+      .catch((error) => {
+        console.log(error); //maybe display an error message
       });
-  });
+  }, []);
 
   return (
     <div className="App">
-      <h1>Hello, World!</h1>
-      <h2>{ message }</h2>
+      <div className="rightSide">
+        <NavBar />
+        <Switch>
+          <Route path="/add">
+            <AddBook setBookShelf={setBookShelf} bookShelf={bookShelf} />
+          </Route>
+
+          <Route path="/search">
+            <SearchBooks setSearchResults={setSearchResults}/>
+          </Route>
+
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+      <Switch>
+        <Route path="/search">
+         {searchResults ? <DisplaySearchResults searchResults={searchResults} bookShelf={bookShelf} setBookShelf={setBookShelf}/> : <SearchMessage />} 
+        </Route>
+
+        <Route path="/">
+          <DisplayBookshelf bookShelf={bookShelf} />
+        </Route>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;
