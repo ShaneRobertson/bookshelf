@@ -16,7 +16,7 @@ export default function DisplaySearchResults({ searchResults, bookShelf, setBook
         return (
           <div className="cardContainer" key={id}>
             <Image id='bookCover' /* src={httpsImage} */ src={imageLinks.thumbnail}/>
-            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} imageLinks={httpsImage} bookShelf={bookShelf} setBookShelf={setBookShelf} />
+            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} imageLinks={imageLinks.thumbnail} bookShelf={bookShelf} setBookShelf={setBookShelf} />
             {/* <Card className='bookCards'>
               <Card.Body>
                 <Card.Title>{title} <Button onClick={async () => {
