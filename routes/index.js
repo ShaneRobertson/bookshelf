@@ -6,8 +6,11 @@ const axios = require('axios')
 
 const {
   getAllBooks,
-  createBook
-} = require('../db')
+  createBook,
+  deleteBook
+} = require('../db');
+
+
 
 apiRouter.get("/", (req, res, next) => {
   res.send({
@@ -46,6 +49,17 @@ apiRouter.get('/google/:queryStr', async (req, res, next) =>{
   } catch (error) {
     throw error
   }
+})
+
+apiRouter.delete('/books/:book_id', async (req, res, next) => {
+const {book_id} = req.params
+try {
+  const deletedBook = await deleteBook(book_id)
+  console.log("The deleted book in the routes: ", deletedBook)
+  res.send(deletedBook)
+} catch (error) {
+  throw error 
+}
 })
 
 module.exports = apiRouter;

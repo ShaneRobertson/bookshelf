@@ -2,33 +2,36 @@ import React, {useState} from 'react'
 import {createNewBook} from '../api'
 import { Card, Button } from "react-bootstrap";
 
-export default function SearchBookCards({title, authors, imageLinks, description, averageRating, ratingsCount, bookShelf, setBookShelf}) {
+export default function SearchBookCards({title, authors, httpsImage, description, averageRating, ratingsCount, bookShelf, setBookShelf}) {
 
     const [showText, setShowText] = useState(true);
-    let truncDesc = showText ? description.slice(0, 250) : description
+    const [showButton, setShowButton] = useState(true)
+    let truncDesc = showText ? description.slice(0, 240) : description
 
     return (
         <Card className="bookCards">
         <Card.Body>
-          <Card.Title>{title}<Button onClick={async () => {
-                  const newBook = await createNewBook(title, authors, description, imageLinks, averageRating, ratingsCount)
+          <Card.Title>{title}{showButton ? <Button onClick={async () => {
+                  const newBook = await createNewBook(title, authors, description, httpsImage, averageRating, ratingsCount)
                   const bookshelfCopy = [...bookShelf]
                   bookshelfCopy.push(newBook)
                   setBookShelf(bookshelfCopy)
-                }}>&#43; Bookshelf</Button></Card.Title>
+                  setShowButton(false)
+
+                }}>&#43; Bookshelf</Button> : <Button style={{backgroundColor: 'green'}} disabled>&#10003; Added</Button>}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{authors}</Card.Subtitle>
-          <Card.Subtitle className="mb-2 text-muted">
+         {averageRating ?  <Card.Subtitle className="mb-2 text-muted">
             {averageRating} out of 5 - {ratingsCount} ratings.
-          </Card.Subtitle>
+          </Card.Subtitle> : '' }
           <Card.Text>
-            {truncDesc}
+            {truncDesc} {truncDesc === "No description provided..." || truncDesc.length < 240 ? '' :  
             <span id='showText'
               onClick={() => {
                 setShowText(!showText);
               }}
             >
               ...Show {showText ? "more" : "less"}
-            </span>
+            </span>}
           </Card.Text>
         </Card.Body>
       </Card>

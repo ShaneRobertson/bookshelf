@@ -24,7 +24,7 @@ async function buildTables() {
         book_id SERIAL PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         author VARCHAR(255) NOT NULL,
-        description VARCHAR(1500),
+        description VARCHAR,
         image TEXT,
         rating INTEGER,
         rating_count INTEGER

@@ -47,7 +47,7 @@ const App = () => {
         </Route>
 
         <Route path="/">
-          <DisplayBookshelf bookShelf={bookShelf} />
+          <DisplayBookshelf bookShelf={bookShelf} setBookShelf={setBookShelf}/>
         </Route>
       </Switch>
     </div>

@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import {deleteBook, getBooks} from '../api'
+import {Trash} from 'react-bootstrap-icons'
 
 export default function BookCards({
+  setBookShelf,
+  book_id,
   title,
   author,
   description,
@@ -13,7 +17,18 @@ export default function BookCards({
   return (
     <Card className="bookCards">
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>{title}   <Button
+                  id="deleteBtn"
+                  variant="danger"
+                  onClick={async () => {
+                    console.log('book_id is: ', book_id)
+                    await deleteBook(book_id);
+                    const activeBooks = await getBooks();
+                    setBookShelf(activeBooks)
+                  }}
+                >
+                  <Trash />
+                </Button></Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{author}</Card.Subtitle>
         <Card.Subtitle className="mb-2 text-muted">
           {rating} out of 5 - {rating_count} ratings.
