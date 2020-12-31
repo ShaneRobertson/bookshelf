@@ -12,7 +12,7 @@ export default function DisplaySearchResults({ searchResults, bookShelf, setBook
         const { volumeInfo: {title, imageLinks, id, authors, averageRating, ratingsCount, description} } = book;
 
         // let httpsImage = imageLinks.thumbnail.replace('http', 'https')
-        // console.log(httpsImage)
+        // console.log(httpsImage)d
         return (
           <div className="cardContainer" key={id}>
             <Image id='bookCover' /* src={httpsImage} */ src={imageLinks.thumbnail}/>
