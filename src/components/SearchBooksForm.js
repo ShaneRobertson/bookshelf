@@ -10,11 +10,15 @@ const SearchBooks = ({setSearchResults}) => {
       <Form
         className="m-3"
         onSubmit={async(event) => {
-          event.preventDefault();
+          event.preventDefault()
+          if(!googleBookSearch){
+            return
+          }
           const results = await getGoogleResults(googleBookSearch)
           console.log('The results from the googlebooks api: ', results)
           setSearchResults(results)
-          
+          setGoogleBookSearch('')
+         
         }}
       >
         <Form.Group controlId="formBasicSearch">

@@ -17,7 +17,7 @@ export default function BookCards({
   return (
     <Card className="bookCards">
       <Card.Body>
-        <Card.Title>{title}   <Button
+        <Card.Title>{title}<Button
                   id="deleteBtn"
                   variant="danger"
                   onClick={async () => {
@@ -28,20 +28,21 @@ export default function BookCards({
                   }}
                 >
                   <Trash />
-                </Button></Card.Title>
+                </Button ></Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{author}</Card.Subtitle>
-        <Card.Subtitle className="mb-2 text-muted">
-          {rating} out of 5 - {rating_count} ratings.
-        </Card.Subtitle>
+        {rating ?  <Card.Subtitle className="mb-2 text-muted">
+            {rating} out of 5 - {rating_count} ratings.
+          </Card.Subtitle> : <Card.Subtitle className="mb-2 text-muted">No Ratings</Card.Subtitle> }
+        
         <Card.Text>
-          {truncDesc}
-          <span id='showText'
-            onClick={() => {
-              setShowText(!showText);
-            }}
-          >
-            ...Show {showText ? "more" : "less"}
-          </span>
+          {truncDesc} {truncDesc === "No description provided..." || truncDesc.length < 240 ? '' :  
+            <span id='showText'
+              onClick={() => {
+                setShowText(!showText);
+              }}
+            >
+              ...Show {showText ? "more" : "less"}
+            </span>}
         </Card.Text>
       </Card.Body>
     </Card>

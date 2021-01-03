@@ -6,14 +6,6 @@
     justify-items: center;
 }
 
-/* h1 {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    width: 100%;
-    background: linear-gradient(red, yellow, green);
-    height: 15vh;
-} */
-
 .displayBooks {
     display: flex;
     flex-wrap: wrap;
@@ -23,7 +15,12 @@
     width: 70vw;
     height: 100vh;
     overflow-y: auto;   
-    /* grid-auto-flow: column; */
+    background-image: url('./img/bg4.jpeg');
+    background-size: cover;
+}
+
+#deleteBtn {
+    float: right;
 }
 
 .displayResults {
@@ -35,7 +32,8 @@
     width: 70vw;
     height: 100vh;
     overflow-y: auto;   
-
+    background-image: url('./img/bg4.jpeg');
+    background-size: cover;
 }
 
 .bookCards {
@@ -73,7 +71,7 @@
 
 .bookCards {
     overflow-y: auto;
-    width: 45rem;
+/*  width: 45rem; */
 }
 
 #bookCover {
@@ -85,11 +83,22 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    
     grid-column: 1 / 2;
     grid-row: 1 / 3;
     width: 70vw;
-    height: 100vh;
-    overflow-y: auto;   
+    height: 100vh;   
+    background-image: url('./img/bg4.jpeg');
+    background-size: cover;
+    font-size: 50px;
+    font-weight: 700;
+    color: black; 
+}
+
+.noResults {
+    font-size: 2rem;
+    font-weight: 500;
+    color: white; 
 }
 
 #showText {
@@ -100,3 +109,6 @@
     cursor: pointer;
 }
 
+#homeAuthor:hover {
+    cursor: pointer
+}

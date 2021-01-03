@@ -2,7 +2,7 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import BookshelfCards from "./BookshelfCards";
 
-const DisplayBooks = ({ bookShelf, setBookShelf }) => {
+const DisplayBookshelf = ({ bookShelf, setBookShelf }) => {
   return (
     <div className="displayBooks">
       {bookShelf.map((book, index) => {
@@ -18,11 +18,14 @@ const DisplayBooks = ({ bookShelf, setBookShelf }) => {
 
         // corrects Mixed Content warning
         let httpsImage;
-        if (image.includes("https")) {
-          httpsImage = image;
-        } else {
-          httpsImage = image.replace("http", "https");
+        if(image){
+          if (image.includes("https")) {
+            httpsImage = image;
+          } else {
+            httpsImage = image.replace("http", "https");
+          }
         }
+      
 
         return (
           <div className="cardContainer" key={index}>
@@ -43,4 +46,4 @@ const DisplayBooks = ({ bookShelf, setBookShelf }) => {
   );
 };
 
-export default DisplayBooks;
+export default DisplayBookshelf;

@@ -6,6 +6,7 @@ export default function SearchBookCards({title, authors, httpsImage, description
 
     const [showText, setShowText] = useState(true);
     const [showButton, setShowButton] = useState(true)
+   
     let truncDesc = showText ? description.slice(0, 240) : description
 
     return (
@@ -22,7 +23,7 @@ export default function SearchBookCards({title, authors, httpsImage, description
           <Card.Subtitle className="mb-2 text-muted">{authors}</Card.Subtitle>
          {averageRating ?  <Card.Subtitle className="mb-2 text-muted">
             {averageRating} out of 5 - {ratingsCount} ratings.
-          </Card.Subtitle> : '' }
+          </Card.Subtitle> : <Card.Subtitle className="mb-2 text-muted">No Ratings</Card.Subtitle>}
           <Card.Text>
             {truncDesc} {truncDesc === "No description provided..." || truncDesc.length < 240 ? '' :  
             <span id='showText'

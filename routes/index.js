@@ -7,7 +7,8 @@ const axios = require('axios')
 const {
   getAllBooks,
   createBook,
-  deleteBook
+  deleteBook,
+  getBooksByAuthor
 } = require('../db');
 
 
@@ -28,6 +29,18 @@ apiRouter.get('/books', async (req, res, next) => {
   }
 })
 
+apiRouter.get('/books/:authorName', async (req, res, next) => {
+  const {authorName} = req.params
+
+  try {
+    const booksByAuthor = await getBooksByAuthor(authorName)
+    console.log("Routes: ", booksByAuthor)
+    res.send(booksByAuthor)
+  } catch (error) {
+    throw error
+  }
+})
+
 apiRouter.post('/books', async (req, res, next) => {
   const {title, author, description, image, rating, rating_count} = req.body
   try {
@@ -41,10 +54,10 @@ apiRouter.post('/books', async (req, res, next) => {
 
 apiRouter.get('/google/:queryStr', async (req, res, next) =>{
   const {queryStr} = req.params
-
+console.log(`query: ${URL}q=${queryStr}&key=${API_KEY}`)
   try {
     const {data} = await axios.get(`${URL}q=${queryStr}&key=${API_KEY}`)
-    console.log('dater', data.items)
+    console.log('data', data.items)
     res.send(data.items)
   } catch (error) {
     throw error
@@ -61,5 +74,6 @@ try {
   throw error 
 }
 })
+
 
 module.exports = apiRouter;

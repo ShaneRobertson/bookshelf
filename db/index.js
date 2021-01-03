@@ -38,10 +38,11 @@ async function createBook(
     `,
       [title, author, description, image, rating, rating_count]
     );
-    console.log("This is the books entry: ", book);
+    console.log("This is the books entry: ", book.book_id);
+
     return book;
   } catch (error) {
-    throw error;
+    throw error; 
   }
 }
 
@@ -59,11 +60,26 @@ async function deleteBook(id){
   }
 }
 
+async function getBooksByAuthor(authorName){
+ // console.log('authorName in the db query: ', authorName)
+  try {
+    const {rows} = await client.query(`
+      SELECT * FROM books
+      WHERE author=$1;
+    `, [authorName])
+    console.log('Database: ', rows)
+    return rows
+  } catch (error) {
+    throw error
+  }
+}
+
 // export
 module.exports = {
   client,
   getAllBooks,
   createBook,
- deleteBook
+ deleteBook,
+ getBooksByAuthor
   // db methods
 };

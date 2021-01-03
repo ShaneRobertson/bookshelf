@@ -60,3 +60,14 @@ export async function deleteBook(book_id){
     throw error
   }
 }
+
+export async function displayAuthorOnly(author){
+
+try {
+  const {data} =  await axios.get(`/api/books/${author}`)
+  console.log("API: ", data)
+  return data
+} catch (error) {
+  throw error
+}
+}

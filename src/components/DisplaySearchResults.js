@@ -5,12 +5,13 @@ import SearchBookCards from "./SearchBookCards";
 
 //
 
-export default function DisplaySearchResults({ searchResults, bookShelf, setBookShelf  }) {
+export default function DisplaySearchResults({ searchResults, bookShelf, setBookShelf }) {
   return (
     <div className="displayResults">
-      {searchResults.map((book) => {
-        let { volumeInfo: {title, imageLinks, id, authors, averageRating, ratingsCount, description} } = book;
-     
+      {Array.isArray(searchResults) ?  searchResults.map((book) => {
+        let { volumeInfo: {title, imageLinks,  authors, averageRating, ratingsCount, description} } = book;
+        const {id} = book
+
       if(!description){
           description = "No description provided..."
       }
@@ -19,20 +20,26 @@ export default function DisplaySearchResults({ searchResults, bookShelf, setBook
       }
 
       // corrects Mixed Content warning
-      let httpsImage;      
-      if(imageLinks.thumbnail.includes('https')){
-        httpsImage = imageLinks.thumbnail
-      } else {
-        httpsImage = imageLinks.thumbnail.replace('http', 'https') 
-      } 
-
+      let httpsImage;  
+      if(imageLinks) {
+        if(imageLinks.thumbnail.includes('https')){
+          httpsImage = imageLinks.thumbnail
+        } else {
+          httpsImage = imageLinks.thumbnail.replace('http', 'https') 
+        } 
+      }    
+     
         return (
           <div className="cardContainer" key={id}>
-            <Image id='bookCover' src={httpsImage}  /* src={imageLinks.thumbnail} *//>
-            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} httpsImage={httpsImage} bookShelf={bookShelf} setBookShelf={setBookShelf} />
+            <Image id='bookCover' src={httpsImage ? httpsImage : '../../public/img/no_image.jpg'}  /* src={imageLinks.thumbnail} *//>
+            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} httpsImage={httpsImage} bookShelf={bookShelf} setBookShelf={setBookShelf}  />
           </div>
         );
-      })}
+      }) : 
+     <div className='noResults'>
+       Guess they haven't written a book on that one yet! Try searching for something else.
+     </div>
+      }
     </div>
   );
 }

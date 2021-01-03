@@ -7,10 +7,9 @@ const history = useHistory()
 
   return (
   <div className='navigate'>
-      <Navbar className='' bg="dark" variant="dark" /* style={{height: '10vh', width: '75vw'}} */>
+      <Navbar className='' bg="dark" variant="dark" >
         <Nav>
           <Nav.Link onClick={() => history.push('/')}>Home</Nav.Link>
-          <Nav.Link onClick={() => history.push('/add')}>Add Books</Nav.Link>
           <Nav.Link onClick={() => history.push('/search')}>Search Books</Nav.Link>
         </Nav>
       </Navbar>
