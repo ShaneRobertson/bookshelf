@@ -11,6 +11,7 @@ const history = useHistory()
         <Nav>
           <Nav.Link onClick={() => history.push('/')}>Home</Nav.Link>
           <Nav.Link onClick={() => history.push('/search')}>Search Books</Nav.Link>
+          <Nav.Link onClick={() => history.push('/about')}>About</Nav.Link>
         </Nav>
       </Navbar>
       </div>

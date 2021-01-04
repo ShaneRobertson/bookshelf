@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import { Switch, Route } from "react-router-dom";
 import SearchBooksForm from "./SearchBooksForm";
 import Home from "./Home";
+import About from "./About";
 import DisplaySearchResults from "./DisplaySearchResults";
 import SearchMessage from "./SearchMessage";
 import { getBooks } from "../api";
@@ -12,14 +13,13 @@ const App = () => {
   const [bookShelf, setBookShelf] = useState([]);
   const [searchResults, setSearchResults] = useState();
 
-
   useEffect(() => {
     getBooks()
       .then((response) => {
         setBookShelf(response);
       })
       .catch((error) => {
-        console.log(error); 
+        console.log(error);
       });
   }, []);
 
@@ -32,6 +32,8 @@ const App = () => {
             <SearchBooksForm setSearchResults={setSearchResults} />
           </Route>
 
+
+
           <Route path="/">
             <Home bookShelf={bookShelf} setBookShelf={setBookShelf} />
           </Route>
@@ -39,11 +41,23 @@ const App = () => {
       </div>
       <Switch>
         <Route path="/search">
-         {searchResults ? <DisplaySearchResults searchResults={searchResults} bookShelf={bookShelf} setBookShelf={setBookShelf} /> : <SearchMessage />} 
+          {searchResults ? (
+            <DisplaySearchResults
+              searchResults={searchResults}
+              bookShelf={bookShelf}
+              setBookShelf={setBookShelf}
+            />
+          ) : (
+            <SearchMessage />
+          )}
         </Route>
 
+        <Route path="/about">
+            <About />
+          </Route>
+
         <Route path="/">
-          <DisplayBookshelf bookShelf={bookShelf} setBookShelf={setBookShelf}/>
+          <DisplayBookshelf bookShelf={bookShelf} setBookShelf={setBookShelf} />
         </Route>
       </Switch>
     </div>

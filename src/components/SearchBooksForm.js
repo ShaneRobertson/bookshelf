@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { getGoogleResults } from "../api";
 import { Form, Button } from "react-bootstrap";
 
-const SearchBooks = ({setSearchResults}) => {
+const SearchBooksForm = ({setSearchResults}) => {
     const [googleBookSearch, setGoogleBookSearch] = useState("");
 
   return (
@@ -40,4 +40,4 @@ const SearchBooks = ({setSearchResults}) => {
   );
 };
 
-export default SearchBooks;
+export default SearchBooksForm;

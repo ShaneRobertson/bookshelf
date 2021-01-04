@@ -1,5 +1,6 @@
 import React from "react";
 import { Image } from "react-bootstrap";
+import no_image from '../no_image.jpg'
 import BookshelfCards from "./BookshelfCards";
 
 const DisplayBookshelf = ({ bookShelf, setBookShelf }) => {
@@ -29,7 +30,7 @@ const DisplayBookshelf = ({ bookShelf, setBookShelf }) => {
 
         return (
           <div className="cardContainer" key={index}>
-            <Image id="bookCover" src={httpsImage} />
+              {httpsImage ?  <Image id='bookCover' src={httpsImage} /> : <Image id='bookCover' src={no_image} />}
             <BookshelfCards
               setBookShelf={setBookShelf}
               book_id={book_id}
