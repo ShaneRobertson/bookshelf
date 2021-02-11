@@ -39,8 +39,10 @@ export default function SearchBookCards({
                   averageRating,
                   ratingsCount
                 );
+                console.log("new Book", newBook)
                 const bookshelfCopy = [...bookshelf];
                 bookshelfCopy.push(newBook);
+                console.log('bookshelf: ', bookshelfCopy)
                 setBookshelf(bookshelfCopy);
                 setShowButton(false);
               }}
