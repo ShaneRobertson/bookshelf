@@ -34,7 +34,6 @@ apiRouter.get('/books/:authorName', async (req, res, next) => {
 
   try {
     const booksByAuthor = await getBooksByAuthor(authorName)
-    console.log("Routes: ", booksByAuthor)
     res.send(booksByAuthor)
   } catch (error) {
     throw error
@@ -45,7 +44,6 @@ apiRouter.post('/books', async (req, res, next) => {
   const {volume_info, title, author, description, image, rating, rating_count} = req.body
   try {
     const newBook = await createBook(volume_info, title, author, description, image, rating, rating_count) 
-    console.log('heres the newest Book', newBook)
     res.send(newBook)
   } catch (error) {
     throw error
@@ -54,10 +52,9 @@ apiRouter.post('/books', async (req, res, next) => {
 
 apiRouter.get('/google/:queryStr', async (req, res, next) =>{
   const {queryStr} = req.params
-//console.log(`query: ${URL}q=${queryStr}&key=${API_KEY}`)
+
   try {
     const {data} = await axios.get(`${URL}q=${queryStr}&key=${API_KEY}`)
-    //console.log('data', data.items)
     res.send(data.items)
   } catch (error) {
     throw error
@@ -68,7 +65,6 @@ apiRouter.delete('/books/:book_id', async (req, res, next) => {
 const {book_id} = req.params
 try {
   const deletedBook = await deleteBook(book_id)
-  console.log("The deleted book in the routes: ", deletedBook)
   res.send(deletedBook)
 } catch (error) {
   throw error 

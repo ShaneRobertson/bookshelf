@@ -12,7 +12,6 @@ const [bookDescription, setBookDescription] = useState('')
       <Form autoComplete='off'
       onSubmit={async (event) => {
           event.preventDefault()
-          console.log('prevented')
           const newBook = await createNewBook(bookTitle, bookAuthor, bookDescription)
           const booklist = [...books]
           booklist.push(newBook)

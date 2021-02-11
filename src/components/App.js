@@ -27,13 +27,15 @@ const App = () => {
     <div className="App">
       <div className="rightSide">
         <NavBar />
+
         <Switch>
           <Route path="/search">
             <SearchBooksForm setSearchResults={setSearchResults} bookshelf={bookshelf}/>
           </Route>
 
-          <Route path="/bookshelf">
-            <Bookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} />
+          <Route path="/">
+           <Bookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} /> 
+         
           </Route>
         </Switch>
       </div>
@@ -55,8 +57,9 @@ const App = () => {
             <About />
           </Route>
 
-        <Route path="/bookshelf">
+        <Route path="/">
           <DisplayBookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} />
+     
         </Route>
       </Switch>
     </div>

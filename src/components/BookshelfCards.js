@@ -21,7 +21,6 @@ export default function BookCards({
                   id="deleteBtn"
                   variant="danger"
                   onClick={async () => {
-                    console.log('book_id is: ', book_id)
                     await deleteBook(book_id);
                     const activeBooks = await getBooks();
                     setBookshelf(activeBooks)

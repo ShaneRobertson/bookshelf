@@ -16,7 +16,6 @@ export default function DisplaySearchResults({ searchResults, bookshelf, setBook
        
         let { volumeInfo: { title, imageLinks,  authors, averageRating, ratingsCount, description} } = book;
         const {id} = book
-     //console.log("here are the id's: ", id)
 
       if(!description){
           description = "No description provided..."

@@ -4,7 +4,6 @@ import no_image from '../no_image.jpg'
 import BookshelfCards from "./BookshelfCards";
 
 const DisplayBookshelf = ({ bookshelf, setBookshelf }) => {
-  console.log("my bookshelf: '", bookshelf)
   return (
     <div className="displayBooks">
       {bookshelf.map((book, index) => {

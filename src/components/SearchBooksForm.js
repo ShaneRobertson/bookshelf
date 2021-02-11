@@ -16,7 +16,6 @@ const SearchBooksForm = ({setSearchResults, bookshelf}) => {
             return
           }
           const results = await getGoogleResults(googleBookSearch)
-         //console.log('The results from the googlebooks api: ', results)
           setSearchResults(results)
           setGoogleBookSearch('')
          
