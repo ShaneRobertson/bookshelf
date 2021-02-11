@@ -9,7 +9,7 @@ const history = useHistory()
   <div className='navigate'>
       <Navbar className='' bg="dark" variant="dark" >
         <Nav>
-          <Nav.Link onClick={() => history.push('/')}>Home</Nav.Link>
+          <Nav.Link onClick={() => history.push('/bookshelf')}>Bookshelf</Nav.Link>
           <Nav.Link onClick={() => history.push('/search')}>Search Books</Nav.Link>
           <Nav.Link onClick={() => history.push('/about')}>About</Nav.Link>
         </Nav>

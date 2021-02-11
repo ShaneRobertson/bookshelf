@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { displayAuthorOnly, getBooks } from "../api";
 //create get all authors, then just forEach over the return , that way we can just switch out bookshelf with the return
-export default function Home({ bookShelf, setBookShelf }) {
+export default function Bookshelf({ bookshelf, setBookshelf }) {
   const [authors, setAuthors] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Home({ bookShelf, setBookShelf }) {
       .catch((error) => {
         console.log(error);
       });
-  }, [bookShelf]);
+  }, [bookshelf]);
 
   let authorList = [];
   authors.forEach((book) => {
@@ -29,7 +29,7 @@ export default function Home({ bookShelf, setBookShelf }) {
           id="homeAuthor"
           onClick={async () => {
             const allBooks = await getBooks();
-            setBookShelf(allBooks);
+            setBookshelf(allBooks);
           }}
         >
           All authors
@@ -41,7 +41,7 @@ export default function Home({ bookShelf, setBookShelf }) {
               id="homeAuthor"
               onClick={async () => {
                 const authorOnly = await displayAuthorOnly(author);
-                setBookShelf(authorOnly);
+                setBookshelf(authorOnly);
               }}
             >
               {author}

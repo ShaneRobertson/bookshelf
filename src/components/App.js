@@ -3,20 +3,20 @@ import DisplayBookshelf from "./DisplayBookshelf";
 import NavBar from "./NavBar";
 import { Switch, Route } from "react-router-dom";
 import SearchBooksForm from "./SearchBooksForm";
-import Home from "./Home";
+import Bookshelf from "./Bookshelf";
 import About from "./About";
 import DisplaySearchResults from "./DisplaySearchResults";
 import SearchMessage from "./SearchMessage";
 import { getBooks } from "../api";
 
 const App = () => {
-  const [bookShelf, setBookShelf] = useState([]);
+  const [bookshelf, setBookshelf] = useState([]);
   const [searchResults, setSearchResults] = useState();
 
   useEffect(() => {
     getBooks()
       .then((response) => {
-        setBookShelf(response);
+        setBookshelf(response);
       })
       .catch((error) => {
         console.log(error);
@@ -29,13 +29,11 @@ const App = () => {
         <NavBar />
         <Switch>
           <Route path="/search">
-            <SearchBooksForm setSearchResults={setSearchResults} />
+            <SearchBooksForm setSearchResults={setSearchResults} bookshelf={bookshelf}/>
           </Route>
 
-
-
-          <Route path="/">
-            <Home bookShelf={bookShelf} setBookShelf={setBookShelf} />
+          <Route path="/bookshelf">
+            <Bookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} />
           </Route>
         </Switch>
       </div>
@@ -44,8 +42,9 @@ const App = () => {
           {searchResults ? (
             <DisplaySearchResults
               searchResults={searchResults}
-              bookShelf={bookShelf}
-              setBookShelf={setBookShelf}
+              bookshelf={bookshelf}
+              setBookshelf={setBookshelf}
+              setSearchResults={setSearchResults}
             />
           ) : (
             <SearchMessage />
@@ -56,8 +55,8 @@ const App = () => {
             <About />
           </Route>
 
-        <Route path="/">
-          <DisplayBookshelf bookShelf={bookShelf} setBookShelf={setBookShelf} />
+        <Route path="/bookshelf">
+          <DisplayBookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} />
         </Route>
       </Switch>
     </div>

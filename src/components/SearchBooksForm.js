@@ -2,20 +2,21 @@ import React, {useState} from "react";
 import { getGoogleResults } from "../api";
 import { Form, Button } from "react-bootstrap";
 
-const SearchBooksForm = ({setSearchResults}) => {
+const SearchBooksForm = ({setSearchResults, bookshelf}) => {
     const [googleBookSearch, setGoogleBookSearch] = useState("");
 
   return (
     <>
       <Form
         className="m-3"
+        
         onSubmit={async(event) => {
           event.preventDefault()
           if(!googleBookSearch){
             return
           }
           const results = await getGoogleResults(googleBookSearch)
-          console.log('The results from the googlebooks api: ', results)
+         //console.log('The results from the googlebooks api: ', results)
           setSearchResults(results)
           setGoogleBookSearch('')
          
@@ -26,6 +27,7 @@ const SearchBooksForm = ({setSearchResults}) => {
           <Form.Control
             type="text"
             placeholder="Start searching..."
+          //  autoComplete='off'
             value={googleBookSearch}
             onChange={ (e) => {
                 setGoogleBookSearch(e.target.value);

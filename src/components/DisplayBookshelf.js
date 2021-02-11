@@ -3,10 +3,11 @@ import { Image } from "react-bootstrap";
 import no_image from '../no_image.jpg'
 import BookshelfCards from "./BookshelfCards";
 
-const DisplayBookshelf = ({ bookShelf, setBookShelf }) => {
+const DisplayBookshelf = ({ bookshelf, setBookshelf }) => {
+  console.log("my bookshelf: '", bookshelf)
   return (
     <div className="displayBooks">
-      {bookShelf.map((book, index) => {
+      {bookshelf.map((book, index) => {
         const {
           book_id,
           title,
@@ -32,7 +33,7 @@ const DisplayBookshelf = ({ bookShelf, setBookShelf }) => {
           <div className="cardContainer" key={index}>
               {httpsImage ?  <Image id='bookCover' src={httpsImage} /> : <Image id='bookCover' src={no_image} />}
             <BookshelfCards
-              setBookShelf={setBookShelf}
+              setBookshelf={setBookshelf}
               book_id={book_id}
               title={title}
               author={author}

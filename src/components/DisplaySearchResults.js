@@ -1,16 +1,22 @@
 import React from "react";
 import { Image } from "react-bootstrap";
+
 import no_image from '../no_image.jpg'
 import SearchBookCards from "./SearchBookCards";
 
 //
 
-export default function DisplaySearchResults({ searchResults, bookShelf, setBookShelf }) {
+export default function DisplaySearchResults({ searchResults, bookshelf, setBookshelf, setSearchResults }) {
+
+
+
   return (
     <div className="displayResults">
       {Array.isArray(searchResults) ? searchResults.map((book) => {
-        let { volumeInfo: {title, imageLinks,  authors, averageRating, ratingsCount, description} } = book;
+       
+        let { volumeInfo: { title, imageLinks,  authors, averageRating, ratingsCount, description} } = book;
         const {id} = book
+     //console.log("here are the id's: ", id)
 
       if(!description){
           description = "No description provided..."
@@ -28,11 +34,14 @@ export default function DisplaySearchResults({ searchResults, bookShelf, setBook
           httpsImage = imageLinks.thumbnail.replace('http', 'https') 
         } 
       } 
-     
+  
+    
+
+
         return (
           <div className="cardContainer" key={id}>
           {httpsImage ?  <Image id='bookCover' src={httpsImage} /> : <Image id='bookCover' src={no_image} />}
-            <SearchBookCards title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} httpsImage={httpsImage} bookShelf={bookShelf} setBookShelf={setBookShelf}  />
+            <SearchBookCards id={id} title={title} authors={authors[0]} description={description} averageRating={averageRating} ratingsCount={ratingsCount} httpsImage={httpsImage} bookshelf={bookshelf} setBookshelf={setBookshelf} searchResults={searchResults} />
           </div>
         );
       }) : 

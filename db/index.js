@@ -20,6 +20,7 @@ async function getAllBooks() {
 }
 
 async function createBook(
+  volume_info,
   title,
   author,
   description,
@@ -32,11 +33,11 @@ async function createBook(
       rows: [book],
     } = await client.query(
       `
-      INSERT INTO books(title, author, description, image, rating, rating_count)
-      VALUES($1, $2, $3, $4, $5, $6)
+      INSERT INTO books(volume_info, title, author, description, image, rating, rating_count)
+      VALUES($1, $2, $3, $4, $5, $6, $7)
       RETURNING *;
     `,
-      [title, author, description, image, rating, rating_count]
+      [volume_info, title, author, description, image, rating, rating_count]
     );
     console.log("This is the books entry: ", book.book_id);
 

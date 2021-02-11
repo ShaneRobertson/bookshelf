@@ -150,3 +150,20 @@ h3 {
     margin: 1rem;
     border-bottom: 2px solid orange;
 }
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+   }
+   ::-webkit-scrollbar-thumb {
+    background: linear-gradient(0deg, #ff8929 0%,#1805f0 100%);
+    border-radius: 9px;
+   }
+   ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(0deg, #1805f0 0%,#ff8929 100%);
+   }
+   ::-webkit-scrollbar-track{
+    background: #ffffff;
+    border-radius: 9px;
+    box-shadow: inset 7px 10px 12px #f0f0f0;
+   }

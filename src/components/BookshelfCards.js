@@ -4,7 +4,7 @@ import {deleteBook, getBooks} from '../api'
 import {Trash} from 'react-bootstrap-icons'
 
 export default function BookCards({
-  setBookShelf,
+  setBookshelf,
   book_id,
   title,
   author,
@@ -24,7 +24,7 @@ export default function BookCards({
                     console.log('book_id is: ', book_id)
                     await deleteBook(book_id);
                     const activeBooks = await getBooks();
-                    setBookShelf(activeBooks)
+                    setBookshelf(activeBooks)
                   }}
                 >
                   <Trash />

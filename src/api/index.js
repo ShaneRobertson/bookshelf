@@ -6,7 +6,7 @@ import axios from 'axios';
 export async function getBooks() {
   try {
     const {data} = await axios.get('/api/books')
-console.log('the data is: ', data)
+//console.log('the data is: ', data)
     return data
   } catch (error) {
     throw error
@@ -15,12 +15,14 @@ console.log('the data is: ', data)
 
 
 //---CREATEING A NEW BOOKSHELF BOOK
-export async function createNewBook(newTitle, newAuthor, newDescription, newImage, newRating, newRating_count){
+export async function createNewBook(newVolumeInfo, newTitle, newAuthor, newDescription, newImage, newRating, newRating_count){
   if(!newDescription) {
     newDescription = "No description."
   }
+
   try {
     const {data} = await axios.post('/api/books', {
+      volume_info: newVolumeInfo,
       title: newTitle,
       author: newAuthor,
       description: newDescription,
@@ -42,7 +44,7 @@ export async function getGoogleResults(query){
   try {
 
     const {data} = await axios.get(`api/google/${queryStr}`)
-    console.log('From the google API', data)
+ //   console.log('From the google API', data)
     return data
   } catch (error) {
     throw error
