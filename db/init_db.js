@@ -12,6 +12,7 @@ async function buildTables() {
     // drop tables in correct order
       console.log('Dropping tables...')
       await client.query(`
+      DROP TABLE IF EXISTS book_authors;
       DROP TABLE IF EXISTS books;
       `)
       console.log('Finished Dropping tables!')
