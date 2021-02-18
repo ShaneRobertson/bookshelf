@@ -23,6 +23,7 @@ export default function BookCards({
                   onClick={async () => {
                     await deleteBook(book_id);
                     const activeBooks = await getBooks();
+                    localStorage.setItem('bookshelfBooks', JSON.stringify(activeBooks))
                     setBookshelf(activeBooks)
                   }}
                 >

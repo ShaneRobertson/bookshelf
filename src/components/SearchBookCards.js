@@ -12,21 +12,23 @@ export default function SearchBookCards({
   ratingsCount,
   bookshelf,
   setBookshelf,
-  searchResults,
 }) {
+
   const [showText, setShowText] = useState(true);
-  const [showButton, setShowButton] = useState(true);
 
   let truncDesc = showText ? description.slice(0, 240) : description;
-  //the key is id from the search results
-  //the key is volume_info from the bookshelf
+  let list = JSON.parse(localStorage.getItem('bookshelfBooks')).filter((book) => book.volume_info === id)
 
   return (
     <Card className="bookCards">
       <Card.Body>
         <Card.Title className="cardTitle">
           {title}
-          {showButton ? (
+          {list.length > 0 ? (
+            <Button id="addBtn" style={{ backgroundColor: "green" }} disabled>
+            &#10003; Added
+          </Button>
+          ): (
             <Button
               id="addBtn"
               onClick={async () => {
@@ -39,19 +41,13 @@ export default function SearchBookCards({
                   averageRating,
                   ratingsCount
                 );
-                console.log("new Book", newBook)
                 const bookshelfCopy = [...bookshelf];
                 bookshelfCopy.push(newBook);
-                console.log('bookshelf: ', bookshelfCopy)
+                localStorage.setItem("bookshelfBooks", JSON.stringify(bookshelfCopy))
                 setBookshelf(bookshelfCopy);
-                setShowButton(false);
               }}
             >
               &#43; Bookshelf
-            </Button>
-          ) : (
-            <Button id="addBtn" style={{ backgroundColor: "green" }} disabled>
-              &#10003; Added
             </Button>
           )}
         </Card.Title>

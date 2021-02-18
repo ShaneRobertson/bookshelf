@@ -16,6 +16,7 @@ const App = () => {
   useEffect(() => {
     getBooks()
       .then((response) => {
+        localStorage.setItem("bookshelfBooks", JSON.stringify(response))
         setBookshelf(response);
       })
       .catch((error) => {

@@ -12,7 +12,6 @@ export async function getBooks() {
   } 
 }
 
-
 //---CREATEING A NEW BOOKSHELF BOOK
 export async function createNewBook(newVolumeInfo, newTitle, newAuthor, newDescription, newImage, newRating, newRating_count){
   if(!newDescription) {
@@ -29,6 +28,7 @@ export async function createNewBook(newVolumeInfo, newTitle, newAuthor, newDescr
       rating: newRating,
       rating_count: newRating_count
     })
+    console.log('the data: ', data)
     return data
   } catch (error) {
     throw error
@@ -37,7 +37,7 @@ export async function createNewBook(newVolumeInfo, newTitle, newAuthor, newDescr
 
 //--- GETTING ALL THE RESULTS FROM THE GOOGLE API
 export async function getGoogleResults(query){
-  let queryStr  = query.replace(' ', '+')
+  let queryStr = query.replace(' ', '+')
   try {
     const {data} = await axios.get(`api/google/${queryStr}`)
     return data
