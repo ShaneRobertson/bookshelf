@@ -28,15 +28,13 @@ const App = () => {
     <div className="App">
       <div className="rightSide">
         <NavBar />
-
         <Switch>
           <Route path="/search">
             <SearchBooksForm setSearchResults={setSearchResults} bookshelf={bookshelf}/>
           </Route>
 
           <Route path="/">
-           <Bookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} /> 
-         
+           <Bookshelf bookshelf={bookshelf} setBookshelf={setBookshelf} />         
           </Route>
         </Switch>
       </div>

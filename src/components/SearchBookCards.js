@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { createNewBook } from "../api";
 import { Card, Button } from "react-bootstrap";
+import BuyLink from './BuyLink';
+
 
 export default function SearchBookCards({
   id,
@@ -12,6 +14,7 @@ export default function SearchBookCards({
   ratingsCount,
   bookshelf,
   setBookshelf,
+  buyLink
 }) {
 
   const [showText, setShowText] = useState(true);
@@ -24,8 +27,11 @@ export default function SearchBookCards({
       <Card.Body>
         <Card.Title className="cardTitle">
           {title}
+          <span id='searched-books-btnContainer'>    
+          {buyLink ? <BuyLink buyLink={buyLink}  /> : ''}
+             
           {list.length > 0 ? (
-            <Button id="addBtn" style={{ backgroundColor: "green" }} disabled>
+            <Button id="searched-books-addBtn" style={{ backgroundColor: "green" }} disabled>
             &#10003; Added
           </Button>
           ): (
@@ -50,6 +56,7 @@ export default function SearchBookCards({
               &#43; Bookshelf
             </Button>
           )}
+          </span>
         </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">{authors}</Card.Subtitle>
         {averageRating ? (

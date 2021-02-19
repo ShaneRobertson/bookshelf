@@ -6,7 +6,7 @@ export default function About() {
         <div className='About'>
         <h1>About your Bookshelf</h1>
         <p>
-          A place where you can store all your favorite books!
+          Bookshelf lets you search for your next good read. If you find something that catches your interest, and its available for sale, then click on the purchase link!
         </p>
       
       </div>

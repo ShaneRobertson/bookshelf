@@ -18,11 +18,12 @@ export default function DisplaySearchResults({
     <div className="displayResults">
       {Array.isArray(searchResults) ? (
         searchResults.map((book) => {
-          let {
+          let {saleInfo: {
+            buyLink
+          },
             volumeInfo: {
               title,
               imageLinks,
-              volume_info,
               authors,
               averageRating,
               ratingsCount,
@@ -30,7 +31,7 @@ export default function DisplaySearchResults({
             },
           } = book;
           const { id } = book;
-        
+        console.log('a book: ', book)
 
           if (!description) {
             description = "No description provided...";
@@ -38,6 +39,10 @@ export default function DisplaySearchResults({
           if (!authors) {
             authors = [""];
           }
+          if(!buyLink){
+            buyLink = ''
+          }
+
 
           // corrects Mixed Content warning
           let httpsImage;
@@ -59,7 +64,7 @@ export default function DisplaySearchResults({
               )}
               <SearchBookCards
                 id={id}
-                volume_info={volume_info}
+                buyLink={buyLink}
                 title={title}
                 authors={authors[0]}
                 description={description}
