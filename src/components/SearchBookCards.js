@@ -45,7 +45,8 @@ export default function SearchBookCards({
                   description,
                   httpsImage,
                   averageRating,
-                  ratingsCount
+                  ratingsCount,
+                  buyLink
                 );
                 const bookshelfCopy = [...bookshelf];
                 bookshelfCopy.push(newBook);

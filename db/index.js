@@ -26,18 +26,19 @@ async function createBook(
   description,
   image,
   rating,
-  rating_count
+  rating_count,
+  buy_link
 ) {
   try {
     const {
       rows: [book],
     } = await client.query(
       `
-      INSERT INTO books(volume_info, title, author, description, image, rating, rating_count)
-      VALUES($1, $2, $3, $4, $5, $6, $7)
+      INSERT INTO books(volume_info, title, author, description, image, rating, rating_count, buy_link)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *;
     `,
-      [volume_info, title, author, description, image, rating, rating_count]
+      [volume_info, title, author, description, image, rating, rating_count, buy_link]
     );
 
     return book;

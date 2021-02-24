@@ -41,9 +41,9 @@ apiRouter.get('/books/:authorName', async (req, res, next) => {
 })
 
 apiRouter.post('/books', async (req, res, next) => {
-  const {volume_info, title, author, description, image, rating, rating_count} = req.body
+  const {volume_info, title, author, description, image, rating, rating_count, buyLink} = req.body
   try {
-    const newBook = await createBook(volume_info, title, author, description, image, rating, rating_count) 
+    const newBook = await createBook(volume_info, title, author, description, image, rating, rating_count, buyLink) 
     res.send(newBook)
   } catch (error) {
     throw error
@@ -54,7 +54,7 @@ apiRouter.get('/google/:queryStr', async (req, res, next) =>{
   const {queryStr} = req.params
 
   try {
-    const {data} = await axios.get(`${URL}q=${queryStr}&key=${API_KEY}`)
+    const {data} = await axios.get(`${URL}q=${queryStr}&key=${API_KEY}&maxResults=25`)
     res.send(data.items)
   } catch (error) {
     throw error

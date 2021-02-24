@@ -31,7 +31,6 @@ export default function DisplaySearchResults({
             },
           } = book;
           const { id } = book;
-        console.log('a book: ', book)
 
           if (!description) {
             description = "No description provided...";

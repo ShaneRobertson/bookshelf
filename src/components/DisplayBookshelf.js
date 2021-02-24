@@ -15,6 +15,7 @@ const DisplayBookshelf = ({ bookshelf, setBookshelf }) => {
           image,
           rating,
           rating_count,
+          buy_link
         } = book;
 
         // corrects Mixed Content warning
@@ -39,6 +40,7 @@ const DisplayBookshelf = ({ bookshelf, setBookshelf }) => {
               description={description}
               rating={rating}
               rating_count={rating_count}
+              buy_link={buy_link}
             />
           </div>
         );
