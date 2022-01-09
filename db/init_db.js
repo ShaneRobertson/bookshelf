@@ -3,7 +3,7 @@ const {
   client,
   createBook
   // other db methods 
-} = require('./index');
+} = require('./index.js');
 
 async function buildTables() {
   try {
